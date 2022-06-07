@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <b>MI SEGUNDA PAGINA WEB EN PROFUNDIZACIÓN B</b>
+    <b>MI SEGUNDA PAGINA WEB EN PROFUNDIZACIÓN Bxd</b>
     <div id="map"></div>
     <script>
         var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -24,96 +24,35 @@
             maxZoom: 18
         });
 
+    var paises = new L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+layers: 'countries',
+format: 'image/png',
+transparent: true,
+attribution: "NaturalEarth"
+});
+        
+var ciudades = new L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+layers: 'cities',
+format: 'image/png',
+transparent: true,
+attribution: "NaturalEarth"
+});
 
+        var baseMaps = {
+"OpenStreetMap": osm
+};
+var overlayMaps = {
+"Paises": paises,
+"Ciudades": ciudades
+};
+        
         var map = L.map('map', {
-            center: [1.620499055567015, -75.6103223780313],
-            zoom: 15,
-            layers: [osm],
-            scrollWheelZoom: true,
-        });
+center: new L.LatLng(41.66, -4.72),
+zoom: 4,
+layers: [osm, paises, ciudades]
+});
 
-        L.control.scale().addTo(map);
-
-        //Universidad
-        var myIcon = L.icon({
-            iconUrl: ' https://lh4.googleusercontent.com/-g6riZwSTzQg/AAAAAAAAAAI/AAAAAAAAAAA/McnbJy-Y5g8/s48-p-k-no-ns-nd/photo.jpg',
-            iconSize: [30, 30],
-            popupAnchor: [-1, -10]
-        });
-
-        var marker = L.marker([1.6202235197329824, -75.604330704544], {
-                icon: myIcon,
-                draggable: false,
-                title: 'Click aqui'
-            }).addTo(map).bindPopup('Universidad de la Amazonia <b>www.uniamazonia.edu.co.com</b>')
-            .openPopup();
-
-        //Alcaldia
-
-        var myIcon = L.icon({
-            iconUrl: ' https://www.florencia-caqueta.gov.co/sites/florenciacaqueta/content/files/000861/43037_pag-wb-escudo_200x200.png',
-            iconSize: [30, 30],
-            popupAnchor: [-1, -10]
-        });
-
-        var marker = L.marker([1.6154076605723737, -75.61396729104922], {
-                icon: myIcon,
-                draggable: false,
-                title: 'Click aqui'
-            }).addTo(map).bindPopup('Alcaldia de Florencia Caquetá <b>www.florencia-caqueta.gov.com</b>')
-            .openPopup();
-
-        var circle = L.circle([1.6154076605723737, -75.61396729104922], 500, {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5
-        }).addTo(map);
-
-        //Plaza Santander
-
-        var myIcon = L.icon({
-            iconUrl: ' https://lh5.googleusercontent.com/p/AF1QipOAbD1H6m9PfvvdwvjorAPqJtnqVEiA-fLjNknA=w426-h240-k-no',
-            iconSize: [30, 30],
-            popupAnchor: [-1, -10]
-        });
-
-        var marker = L.marker([1.6151336872904176, -75.6130150707344], {
-                icon: myIcon,
-                draggable: false,
-                title: 'Click aqui'
-            }).addTo(map).bindPopup('Plaza Santander<b></b>')
-            .openPopup();
-
-        var polygon = L.polygon([
-                [1.6151765855833191, -75.61371244505186],
-                [1.615412526178119, -75.6130150707344],
-                [1.614683255160223, -75.61276830751439],
-                [1.6145009373648533, -75.6135407836814]
-            ]).addTo(map)
-            .bindPopup('Mercaolid');
-
-        var pointA = new L.LatLng(1.626416095877899, -75.59237674003973);
-        var pointB = new L.LatLng(1.624718940889642, -75.59241697317341);
-        var pointC = new L.LatLng(1.6248127804577976, -75.59383586174391);
-        var pointD = new L.LatLng(1.624785969152367, -75.5945386004792);
-        var pointE = new L.LatLng(1.6242551052271188, -75.59539422516636);
-        var pointF = new L.LatLng(1.6236652562450538, -75.59620425229254);
-        var pointG = new L.LatLng(1.6233515637710718, -75.59651538852647);
-        var pointH = new L.LatLng(1.6232067826022658, -75.59786990409494);
-        var pointI = new L.LatLng(1.6232791731826932, -75.59851095202521);
-        var pointJ = new L.LatLng(1.6214425965059347, -75.5995462847657);
-        var pointK = new L.LatLng(1.6213970172166638, -75.59962943323157);
-        var pointL = new L.LatLng(1.6192789193786892, -75.60148552185666);
-        var pointM = new L.LatLng(1.6197454373110507, -75.6024377060503);
-        var pointN = new L.LatLng(1.6198365959752128, -75.6024591637216);
-        var pointO = new L.LatLng(1.6199210517934313, -75.60268245761915);
-        var latlngs = [pointA, pointB, pointC, pointD, pointE, pointF, pointG, pointH, pointI, pointJ, pointK, pointL, pointM, pointN, pointO];
-        var polyline = L.polyline(
-                latlngs, {
-                    color: 'red'
-                }
-            )
-            .addTo(map)
+        
     </script>
 </body>
 
