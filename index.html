@@ -114,6 +114,15 @@
                 }
             )
             .addTo(map)
+        
+        //control capa
+        
+        var map = L.map('map', {
+center: new L.LatLng(41.66, -4.72),
+zoom: 4,
+layers: [osm, paises, ciudades]
+});
+        
     </script>
 </body>
 
